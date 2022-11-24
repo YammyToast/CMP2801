@@ -85,16 +85,18 @@ int main()
 			int w = std::stoi(parameters[4]);
 
 			Rectangle* r = new Rectangle(x, y, h, w);
-			shapes.push_back(static_cast<Shape*>(r));
-			std::cout << &r;
+			Shape* shape = static_cast<Shape*>(r);
+			shapes.push_back(shape);
+			std::cout << *shape;
 		}
 		else if (command.compare("addS") == 0) {
 			// get parameters
 			// ...
 			int e = std::stoi(parameters[3]);
 			Square* s = new Square(x, y, e);
-			shapes.push_back(static_cast<Shape*>(s));
-			std::cout << &s;
+			Shape* shape = static_cast<Shape*>(s);
+			shapes.push_back(shape);
+			std::cout << *shape;
 		}
 
 		if (command.compare("addC") == 0) {
@@ -102,8 +104,9 @@ int main()
 			// ...
 			int r = std::stoi(parameters[3]);
 			Circle* c = new Circle(x, y, r);
-			shapes.push_back(static_cast<Shape*>(c));
-			std::cout << &c;
+			Shape* shape = static_cast<Shape*>(c);
+			shapes.push_back(shape);
+			std::cout << *shape;
 			
 		}
 		else if (command.compare("scale") == 0) {
@@ -117,26 +120,39 @@ int main()
 		}
 		else if (command.compare("move") == 0) {
 			// move object at index 
-			int shapeNo = std::stoi(parameters[3]); // read from parameters
+			int shapeNo = std::stoi(parameters[1]); // read from parameters
 			// you may want to check if the index exists or not!
-			
+			if (shapeNo <= shapes.size()) {
+				// Inefficient as X and Y are defined earlier to just be rewritten again.
+				x = std::stoi(parameters[2]);
+				y = std::stoi(parameters[3]);
+				Movable *m = dynamic_cast<Movable*>(shapes[shapeNo - 1]);
+				m->move(x, y);
+
+				// scale should work similarly...
+
+				// note that here you should see the corresponding toString output for the derived classes...
+				// if toString is not a virtual function, you may see the base class functionality :(
+				std::cout << *shapes[shapeNo - 1];
+
+			} else {
+				std::cout << "Doesn't exist" << std::endl;
+
+			}
 			// Study the following code. A Shape object is not Movable, but all derived classes are...
 			// you can't automatically type cast from a Shape to a Movable, but you can force a downcasting
-			Movable *m = dynamic_cast<Movable*>(shapes[shapeNo - 1]);
-			m->move(x, y);
-			// scale should work similarly...
-
-			// note that here you should see the corresponding toString output for the derived classes...
-			// if toString is not a virtual function, you may see the base class functionality :(
-			std::cout << shapes[shapeNo - 1];
 		}
 		else if (command.compare("display") == 0) {
+			for (auto& shape: shapes) {
+				std::cout << *shape << "\n" << std::endl;
+			}
 			// this is not given in our example, but why don't you implement a display function which shows all objects stored in shapes?
 		}
 
 		// do any necessary postprocessing at the end of each loop...
 		// yes, there is some necessary postprocessing...
 		parameters.clear();
+		userCommand = "";
 
 		std::cout << endl << endl;
 	}

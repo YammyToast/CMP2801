@@ -50,6 +50,7 @@ public:
 
     virtual void updateShape(const int &_x, const int &_y)
     {
+        points.clear();
         leftTop = Point(_x, _y);
         calculatePoints();
         calculateArea();
@@ -63,8 +64,9 @@ public:
 
 std::ostream& operator<<(std::ostream &_out, const Shape& _self)
 {
-    std::cout << "test" << std::endl;
-    _out << typeid(_self).name() << ": [" << _self.propertyString << "]\n";
+    // Trim first character of typeid name as its the length of the name?
+    // Move pointer forwards once address to trim the number.
+    _out << (typeid(_self).name()) + 1 << ": [" << _self.propertyString << "]\n";
     _out << "Points[";
     for (auto &point : _self.points)
     {

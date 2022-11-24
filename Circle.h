@@ -23,6 +23,9 @@ class Circle : public Shape, public Movable{
             area = 3.14 * std::pow(radius, 2.00);
         }
 
+        void calculatePerimeter() {
+            perimeter = 6.18 * radius;
+        }
 
         void move(const int& _newX, const int& _newY) {
             updateShape(_newX, _newY);

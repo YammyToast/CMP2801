@@ -42,6 +42,8 @@ class Rectangle : public Shape, public Movable {
             ss << "h=" << height << ",w=" << width;
             ss >> propertyString;
         }
+
 };
+
 
 #endif
