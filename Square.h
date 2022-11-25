@@ -33,6 +33,7 @@ class Square : public Shape, public Movable {
 
         void scale(const int& _scaleX, const int& _scaleY) {
             edge = edge * _scaleX;
+            updateShape(leftTop.getX(), leftTop.getY());
         }
 
         void updatePropertyString() {

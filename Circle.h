@@ -34,6 +34,7 @@ class Circle : public Shape, public Movable{
 
         void scale(const int& _scaleX, const int& _scaleY) {
             radius = ((2 * radius) * _scaleX) / 2;
+            updateShape(leftTop.getX(), leftTop.getY());
         }
 
         void updatePropertyString() {

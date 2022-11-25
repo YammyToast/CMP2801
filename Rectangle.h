@@ -35,6 +35,7 @@ class Rectangle : public Shape, public Movable {
         void scale(const int& _scaleX, const int& _scaleY) {
             height = height * _scaleY;
             width = width * _scaleX;
+            updateShape(leftTop.getX(), leftTop.getY());
         }
 
         void updatePropertyString() {

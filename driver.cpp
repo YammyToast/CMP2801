@@ -112,7 +112,20 @@ int main()
 		else if (command.compare("scale") == 0) {
 			// scale object at index... the scaling needs to be isotropic in case of circle and square 
 			// you may want to check if the index exists or not!
-			
+			int shapeNo = std::stoi(parameters[1]);
+			if (shapeNo <= shapes.size()) {
+				x = std::stoi(parameters[2]);
+				y = std::stoi(parameters[3]);
+				try {
+					Movable *m = dynamic_cast<Movable*>(shapes[shapeNo - 1]);
+					m->scale(x, y);
+					std::cout << *shapes[shapeNo - 1];
+				}
+				catch (const char* err) {
+					std::cout << "Shape isn't Movable" << std::endl;
+
+				}
+			}
 			// Multiple inhertitance is tricky! The Shape class does nto have a scale function, the Movable does!
 			// As a result all your derived classes have scale functions... 
 			// You may need to use type casting wisely to use polymorphic functionality!
