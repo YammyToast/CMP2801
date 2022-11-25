@@ -9,6 +9,7 @@ class Circle : public Shape, public Movable{
     private:
         int radius;
     public:
+        
         Circle(const int& _x, const int& _y, const int& _radius) : radius(_radius) {
             updateShape(_x, _y);
 
@@ -39,6 +40,7 @@ class Circle : public Shape, public Movable{
 
         void updatePropertyString() {
             std::stringstream ss;
+            propertyString = " ";
             ss << "r=" << radius;
             ss >> propertyString;
         }

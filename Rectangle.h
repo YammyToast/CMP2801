@@ -40,6 +40,7 @@ class Rectangle : public Shape, public Movable {
 
         void updatePropertyString() {
             std::stringstream ss;
+            propertyString = " ";
             ss << "h=" << height << ",w=" << width;
             ss >> propertyString;
         }
