@@ -43,7 +43,7 @@ class Square : public Shape, public Movable {
             updateShape(leftTop.getX(), leftTop.getY());
         }
 
-        // Updates this shapes 
+        // Updates this shape's string property with its unique attribute.
         void updatePropertyString() {
             std::stringstream ss;
             propertyString = " ";
