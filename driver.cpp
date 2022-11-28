@@ -127,6 +127,7 @@ int main()
 
 				if (shapeNo <= shapes.size()) {
 					// Inefficient as X and Y are defined earlier to just be rewritten again.
+					// Potentially restructure to remove inefficiencies.
 					x = std::stoi(parameters[2]);
 					y = std::stoi(parameters[3]);
 					Movable *m = dynamic_cast<Movable*>(shapes[shapeNo - 1]);
