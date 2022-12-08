@@ -86,6 +86,12 @@ public:
      * @returns Void. New property string is written to the internal property so that it can be called at any time.
     */
     virtual void updatePropertyString() = 0;
+
+    virtual ~Shape() {
+        points.clear();
+
+    }
+
     /**
      * @brief Operator Overload Declaration.
     */

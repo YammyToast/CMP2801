@@ -4,13 +4,16 @@
 #include "Shape.h"
 #include "Movable.h"
 
+#include <cmath>
 
 class Circle : public Shape, public Movable{
     private:
         int radius;
+        double pi;
     public:
         
         Circle(const int& _x, const int& _y, const int& _radius) : radius(_radius) {
+            pi = ((double)std::atan(1) * 4);
             updateShape(_x, _y);
 
         }   
@@ -23,12 +26,12 @@ class Circle : public Shape, public Movable{
 
         // Area of a circle equation.
         void calculateArea() {
-            area = 3.14 * std::pow(radius, 2.00);
+            area = pi * std::pow(radius, 2.00);
         }
 
         // Unique perimeter definition using circle equation.
         void calculatePerimeter() {
-            perimeter = 6.18 * radius;
+            perimeter = 2 * pi * radius;
         }
 
         // A move can be processed by calling the updateShape macro (which requires an anchor Point object).

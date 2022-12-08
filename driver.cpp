@@ -38,18 +38,16 @@ int main()
 	vector <Shape*> shapes;     
 	vector <std::string> parameters; 
 
-
-
-
-
 	while (userCommand.compare("exit") != 0) 
 	{
+		userCommand = "";
 		std::stringstream ss;
 		
 		std::cout << "Enter the command: ";
 		
 		getline(cin, userCommand);
-		if (std::regex_match(userCommand, std::regex("(([a-zA-Z]+){1}(\\s[0-9]+)+(\\s)*)"))) {
+		std::cout << userCommand << std::endl;
+		if (std::regex_match(userCommand, std::regex("(([a-zA-Z]+){1}(\\s[0-9]+)*(\\s)*)"))) {
 			ss << userCommand;
 			std::string token;
 			while(getline(ss, token, ' ')) {
@@ -75,7 +73,6 @@ int main()
 
 			if (command.compare("addR") == 0) {
 
-
 				int h = std::stoi(parameters[3]);
 				int w = std::stoi(parameters[4]);
 
@@ -83,6 +80,7 @@ int main()
 				Shape* shape = static_cast<Shape*>(r);
 				shapes.push_back(shape);
 				std::cout << *shape;
+
 			}
 			else if (command.compare("addS") == 0) {
 
@@ -91,6 +89,7 @@ int main()
 				Shape* shape = static_cast<Shape*>(s);
 				shapes.push_back(shape);
 				std::cout << *shape;
+
 			}
 
 			if (command.compare("addC") == 0) {
@@ -100,7 +99,7 @@ int main()
 				Shape* shape = static_cast<Shape*>(c);
 				shapes.push_back(shape);
 				std::cout << *shape;
-				
+
 			}
 			else if (command.compare("scale") == 0) {
 				// scale object at index... the scaling needs to be isotropic in case of circle and square 
@@ -113,6 +112,7 @@ int main()
 						Movable *m = dynamic_cast<Movable*>(shapes[shapeNo - 1]);
 						m->scale(x, y);
 						std::cout << *shapes[shapeNo - 1];
+
 					}
 					catch (const char* err) {
 						std::cout << "Shape isn't Movable" << std::endl;
@@ -131,6 +131,7 @@ int main()
 					x = std::stoi(parameters[2]);
 					y = std::stoi(parameters[3]);
 					Movable *m = dynamic_cast<Movable*>(shapes[shapeNo - 1]);
+
 					m->move(x, y);
 
 
@@ -149,9 +150,9 @@ int main()
 
 			}
 
+
 			// Post Processing
 			parameters.clear();
-			userCommand = "";
 
 			std::cout << endl << endl;
 		} else {
@@ -160,8 +161,15 @@ int main()
 		}
 	}
 
+
 	std::cout << "Press any key to continue...";
 	std::getchar();
+
+	// Memory Clearing.
+	for (size_t it = 0; it < shapes.size(); ++it) {
+		delete shapes.at(it);
+	}
+	shapes.clear();
 
 	return 0;
 }

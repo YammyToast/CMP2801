@@ -22,7 +22,7 @@ class Square : public Shape, public Movable {
     
         // As the square type is isotropic, area can be calculated using edge^2.
         void calculateArea() {
-            area = edge * edge;
+            area = (double)edge * (double)edge;
         }
         
         // A move can be processed by calling the updateShape macro (which requires an anchor Point object).
@@ -50,6 +50,8 @@ class Square : public Shape, public Movable {
             ss << "e=" << edge;
             ss >> propertyString;
         }
+
+
 
 };
 
