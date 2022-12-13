@@ -41,10 +41,13 @@ int main()
 	while (userCommand.compare("exit") != 0) 
 	{
 		userCommand = "";
+		
 		std::stringstream ss;
 		
 		std::cout << "Enter the command: ";
 		
+
+		// Switch this back to using strtok
 		getline(cin, userCommand);
 		std::cout << userCommand << std::endl;
 		if (std::regex_match(userCommand, std::regex("(([a-zA-Z]+){1}(\\s[0-9]+)*(\\s)*)"))) {
