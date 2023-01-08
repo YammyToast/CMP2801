@@ -67,11 +67,8 @@ int main()
 			// 	std::cout << token << " ";
 			// }
 			
-			if (parameters.size() >= 3) {
-				std::string command = parameters[0];
-				int x = std::stoi(parameters[1]); 
 
-				int y = std::stoi(parameters[2]);
+				std::string command = parameters[0];
 
 
 				if (command.compare("addR") == 0) {
@@ -80,7 +77,8 @@ int main()
 						continue;
 
 					}
-
+					int x = std::stoi(parameters[1]); 
+					int y = std::stoi(parameters[2]);
 					int h = std::stoi(parameters[3]);
 					int w = std::stoi(parameters[4]);
 
@@ -95,7 +93,8 @@ int main()
 					if(parameters.size() != 4) {
 						continue;
 					}
-
+					int x = std::stoi(parameters[1]); 
+					int y = std::stoi(parameters[2]);
 					int e = std::stoi(parameters[3]);
 					Square* s = new Square(x, y, e);
 					Shape* shape = static_cast<Shape*>(s);
@@ -110,7 +109,8 @@ int main()
 						continue;
 
 					}
-
+					int x = std::stoi(parameters[1]); 
+					int y = std::stoi(parameters[2]);
 					int r = std::stoi(parameters[3]);
 					Circle* c = new Circle(x, y, r);
 					Shape* shape = static_cast<Shape*>(c);
@@ -128,8 +128,8 @@ int main()
 
 					int shapeNo = std::stoi(parameters[1]);
 					if (shapeNo <= shapes.size()) {
-						x = std::stoi(parameters[2]);
-						y = std::stoi(parameters[3]);
+						int x = std::stoi(parameters[2]);
+						int y = std::stoi(parameters[3]);
 						try {
 							Movable *m = dynamic_cast<Movable*>(shapes[shapeNo - 1]);
 							m->scale(x, y);
@@ -155,8 +155,8 @@ int main()
 					if (shapeNo <= shapes.size()) {
 						// Inefficient as X and Y are defined earlier to just be rewritten again.
 						// Potentially restructure to remove inefficiencies.
-						x = std::stoi(parameters[2]);
-						y = std::stoi(parameters[3]);
+						int x = std::stoi(parameters[2]);
+						int y = std::stoi(parameters[3]);
 						Movable *m = dynamic_cast<Movable*>(shapes[shapeNo - 1]);
 
 						m->move(x, y);
@@ -176,8 +176,6 @@ int main()
 					}
 
 				}
-
-			}
 			
 
 
