@@ -20,16 +20,9 @@ protected:
     std::vector<Point> points;
     std::string propertyString;
 public:
-    Shape()
-    {
-        // If no coordinates are given, create a 'default' point with coordinates 0,0.
-        leftTop = Point();
-    }
-    Shape(const Point &_leftTop)
-    {
-        // If a valid Point object is given, uses this Point object as the anchor for the shape.
-        leftTop = _leftTop;
-    }
+    Shape();
+
+    Shape(const Point &_leftTop);
 
     /**
      * @brief Calculates the area of the shape and saves to area attributeproperties
@@ -40,24 +33,7 @@ public:
     /**
      * @brief Calculates the perimeter of the shape and saves to perimeter attributeproperties     * @returns Void. Result is saved into perimeter attributeproperties
     */
-    virtual void calculatePerimeter()
-    {
-        // This algorithm requires more than 2 points to work.
-        if (points.size() > 2)
-        {
-            int newPerimeter = 0;
-            // Connect points in the shape together and use distance as 'perimeter lines'/edges.
-            // Sum up these edges to find the perimeter.
-            for (size_t it = 0; it < (points.size() - 1); ++it)
-            {
-                newPerimeter += points.at(it).distanceToPoint(&points.at(it + 1));
-            }
-            // Complete the perimeter loop.
-            newPerimeter += points.front().distanceToPoint(&points.back());
-            // Write new perimeter sum to perimeter attributeproperties
-            perimeter = newPerimeter;
-        }
-    };
+    virtual void calculatePerimeter();
 
     /**
      * @brief Finds the set of points needed to represent the shape object.
@@ -69,17 +45,7 @@ public:
      * @brief Macro Function to update all the properties of a shape. This is called whenever properties have been changed that affect other properties in the object.
      * @returns Void. Internal functions all write to internal properties.
     */
-    virtual void updateShape(const int &_x, const int &_y)
-    {
-        points.clear();
-        leftTop = Point(_x, _y);
-        // Calculating points has to be done first as Area and Perimeter can rely on points.
-        calculatePoints();
-        calculateArea();
-        calculatePerimeter();
-        // Update the property string now that all of the properties have been updated.
-        updatePropertyString();
-    }
+    virtual void updateShape(const int &_x, const int &_y);
 
     /**
      * @brief Updates the variable responsible for holding the object display string. Essentially this allows for each shape to define how its properties are displayed.
@@ -89,7 +55,6 @@ public:
 
     virtual ~Shape() {
         points.clear();
-
     }
 
     /**

@@ -11,47 +11,26 @@ class Circle : public Shape, public Movable{
         int radius;
         double pi;
     public:
-        
-        Circle(const int& _x, const int& _y, const int& _radius) : radius(_radius) {
-            pi = ((double)std::atan(1) * 4);
-            updateShape(_x, _y);
-
-        }   
+        Circle();
+        Circle(const int& _x, const int& _y, const int& _radius);
 
         // Implementation of calculatePoints for a circle.
-        void calculatePoints() {
-            points.push_back(leftTop);
-            points.push_back(Point(leftTop.getX() + (2 * radius), leftTop.getY() + (2 * radius)));
-        }
+        void calculatePoints();
 
         // Area of a circle equation.
-        void calculateArea() {
-            area = pi * std::pow(radius, 2.00);
-        }
+        void calculateArea();
 
         // Unique perimeter definition using circle equation.
-        void calculatePerimeter() {
-            perimeter = 2 * pi * radius;
-        }
+        void calculatePerimeter();
 
         // A move can be processed by calling the updateShape macro (which requires an anchor Point object).
-        void move(const int& _newX, const int& _newY) {
-            updateShape(_newX, _newY);
-        }
+        void move(const int& _newX, const int& _newY);
 
         // Scale method for circles. As circles are isotrophic, only one value is used for the scale.
-        void scale(const int& _scaleX, const int& _scaleY) {
-            radius = ((2 * radius) * _scaleX) / 2;
-            updateShape(leftTop.getX(), leftTop.getY());
-        }
+        void scale(const int& _scaleX, const int& _scaleY);
         
         // Updates this shape's string property with its unique attribute.
-        void updatePropertyString() {
-            std::stringstream ss;
-            propertyString = " ";
-            ss << "r=" << radius;
-            ss >> propertyString;
-        }
+        void updatePropertyString();
 
         // std::string toString() {
             
