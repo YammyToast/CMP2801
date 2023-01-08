@@ -12,7 +12,7 @@ Shape::Shape(const Point &_leftTop)
     leftTop = _leftTop;
 }
 
-Shape::calculatePerimeter()
+void Shape::calculatePerimeter()
 {
     // This algorithm requires more than 2 points to work.
     if (points.size() > 2)
@@ -31,7 +31,7 @@ Shape::calculatePerimeter()
     }
 };
 
-Shape::updateShape(const int &_x, const int &_y)
+void Shape::updateShape(const int &_x, const int &_y)
 {
     points.clear();
     leftTop = Point(_x, _y);
@@ -43,3 +43,28 @@ Shape::updateShape(const int &_x, const int &_y)
     updatePropertyString();
 }
 
+
+/**
+ * @brief Operator Overload definition. Allows for objects to be streamed to an ostream. Output is a combination of: The shape's unique property string, along with
+ * the constant properties of the points, area, and perimeter.
+ * @param _out Reference value to an ostream that the properties will be written to.
+ * @param _self Reference to a (downcasted) Shape that the properties should be read from.
+ * @returns ostream with appended property strings.
+ * 
+*/
+std::ostream& operator<<(std::ostream &_out, const Shape& _self)
+{
+    // Trim first character of typeid name as its the length of the name?
+    // Move pointer forwards once address to trim the number.
+    // typeid can get the type name of derived classes despite _self being a downcasted class.
+    _out << (typeid(_self).name()) + 1 << ": [" << _self.propertyString << "]\n";
+    _out << "Points[";
+    for (auto &point : _self.points)
+    {
+        _out << "(" << point.getX() << "," << point.getY() << ")";
+    }
+    _out << "]\n";
+    _out << "Area=" << _self.area << " Perimeter=" << _self.perimeter;
+
+    return _out;
+}

@@ -10,29 +10,29 @@ Circle::Circle(const int& _x, const int& _y, const int& _radius) : radius(_radiu
 
 }  
 
-Circle::calculatePoints() {
+void Circle::calculatePoints() {
     points.push_back(leftTop);
     points.push_back(Point(leftTop.getX() + (2 * radius), leftTop.getY() + (2 * radius)));
 }
 
-Circle::calculateArea() {
+void Circle::calculateArea() {
     area = pi * std::pow(radius, 2.00);
 }
 
-Circle::calculatePerimeter() {
+void Circle::calculatePerimeter() {
     perimeter = 2 * pi * radius;
 }
 
-Circle::move(const int& _newX, const int& _newY) {
+void Circle::move(const int& _newX, const int& _newY) {
     updateShape(_newX, _newY);
 }
 
-Circle::scale(const int& _scaleX, const int& _scaleY) {
+void Circle::scale(const int& _scaleX, const int& _scaleY) {
     radius = ((2 * radius) * _scaleX) / 2;
     updateShape(leftTop.getX(), leftTop.getY());
 }
 
-Circle::updatePropertyString() {
+void Circle::updatePropertyString() {
     std::stringstream ss;
     propertyString = " ";
     ss << "r=" << radius;

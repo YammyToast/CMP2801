@@ -25,10 +25,7 @@ class Square : public Shape, public Movable {
 
         // Check above function for implementation. This method performs the actual scale on the shape.
         // As all of the dependents parameters for this shape are set from the edge value, we simply scale the edge, and call for all of the properties to be updated.
-        void scale(const int& _scaleX, const int& _scaleY) {
-            edge = edge * _scaleX;
-            updateShape(leftTop.getX(), leftTop.getY());
-        }
+        void scale(const int& _scaleX, const int& _scaleY);
 
         // Updates this shape's string property with its unique attribute.
         void updatePropertyString();

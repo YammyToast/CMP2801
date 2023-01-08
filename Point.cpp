@@ -8,15 +8,15 @@ Point::Point() {
 
 Point::Point(const int& _X, const int& _Y) : X(_X), Y(_Y) {};
 
-Point::getX() const {
+int Point::getX() const {
     return X;
 }
 
-Point::getY() const {
+int Point::getY() const {
     return Y;
 }
 
-Point::distanceToPoint(const Point* _targetPoint)  {
+double Point::distanceToPoint(const Point* _targetPoint)  {
     // Pythagorean theorem to find the distance between the points.
     return std::sqrt(
     // Potentially remove std::fabs as std::pow MAY convert to positive.
