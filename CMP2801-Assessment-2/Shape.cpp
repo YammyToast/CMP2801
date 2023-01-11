@@ -3,6 +3,7 @@
 Shape::Shape()
 {
     // If no coordinates are given, create a 'default' point with coordinates 0,0.
+    isCircular = false;
     leftTop = Point();
 }
 

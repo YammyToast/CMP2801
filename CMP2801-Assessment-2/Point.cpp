@@ -26,21 +26,3 @@ double Point::distanceToPoint(const Point* _targetPoint) {
     );
 }
 
-std::sqrt(
-    std::pow(
-        std::fabs(
-            (double)Points.at(Iterator).getX() - (double)Points.at(Iterator + 1).getX()
-        ),
-        2.00
-    ) 
-    +
-    std::pow(
-        std::fabs(
-            (double)Points.at(Iterator).getY() - (double)Points.at(Iterator + 1).getY()
-        ),
-        2.00
-    )
-
-)
-
-Sum

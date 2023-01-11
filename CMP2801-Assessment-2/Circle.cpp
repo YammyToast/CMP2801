@@ -2,12 +2,13 @@
 
 Circle::Circle() {
     radius = 0;
+    isCircular = true;
 }
 
 Circle::Circle(const int& _x, const int& _y, const int& _radius) : radius(_radius) {
     pi = ((double)std::atan(1) * 4);
+    isCircular = true;
     updateShape(_x, _y);
-
 }
 
 void Circle::calculatePoints() {
